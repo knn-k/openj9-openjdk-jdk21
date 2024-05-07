@@ -103,6 +103,12 @@ class DirectMethodHandleAccessor extends MethodAccessorImpl {
             return invokeImpl(obj, args);
         } catch (ClassCastException | WrongMethodTypeException e) {
             if (isIllegalArgument(e)) {
+		e.printStackTrace();
+		System.err.println("target: " + target.toString());
+		System.err.println("args:");
+		for (Object o: args) {
+			System.err.println(o.toString());
+		}
                 // No cause in IAE to be consistent with the old behavior
                 throw new IllegalArgumentException("argument type mismatch");
             } else {
